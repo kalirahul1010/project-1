@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(120deg, #2980b9, #6dd5fa);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .signup-box {
+            background: white;
+            padding: 30px 40px;
+            border-radius: 10px;
+            width: 350px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .signup-box h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 10px;
+            background: #2980b9;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #1c5980;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .error {
+            color: red;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="signup-box">
+    <h2>Create Account</h2>
+
+    <!-- Change action to your Java Servlet URL later -->
+    <form id="signupForm" action="SignupServlet" method="post" onsubmit="return validateForm()">
+
+        <div class="input-group">
+            <label>Full Name</label>
+            <input type="text" id="fullname" name="fullname" required>
+        </div>
+
+        <div class="input-group">
+            <label>Email</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+
+        <div class="input-group">
+            <label>Password</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+
+        <div class="input-group">
+            <label>Confirm Password</label>
+            <input type="password" id="confirmPassword" required>
+            <div id="errorMsg" class="error"></div>
+        </div>
+
+        <button type="submit" class="btn">Sign Up</button>
+    </form>
+
+    <div class="login-link">
+        Already have an account? <a href="#">Login</a>
+    </div>
+</div>
+
+<script>
+    function validateForm() {
+        let pass = document.getElementById("password").value;
+        let confirmPass = document.getElementById("confirmPassword").value;
+        let errorMsg = document.getElementById("errorMsg");
+
+        if (pass !== confirmPass) {
+            errorMsg.textContent = "Passwords do not match!";
+            return false;
+        }
+
+        errorMsg.textContent = "";
+        return true;
+    }
+</script>
+
+</body>
+</html>
